@@ -1,0 +1,42 @@
+#!/bin/sh
+
+PUBLIC_IP_MONITOR_DATA_PATH="/opt/public_ip_monitor"
+
+touch /etc/config/public_ip_monitor
+
+uci set public_ip_monitor.general='general'
+uci set public_ip_monitor.general.monitor_ipv4=0
+uci set public_ip_monitor.general.monitor_ipv6=0
+
+uci set public_ip_monitor.general.ipv4_ip_service='4.icanhazip.com'
+uci set public_ip_monitor.general.ipv4_check_interval=30
+
+DEFAULT_IPV4_SCRIPT_PATH="${PUBLIC_IP_MONITOR_DATA_PATH}/ipv4_script.sh"
+uci set public_ip_monitor.general.ipv4_script_location="${DEFAULT_IPV4_SCRIPT_PATH}"
+
+uci set public_ip_monitor.general.ipv6_ip_service='6.icanhazip.com'
+uci set public_ip_monitor.general.ipv6_check_interval=30
+
+DEFAULT_IPV6_SCRIPT_PATH="${PUBLIC_IP_MONITOR_DATA_PATH}/ipv6_script.sh"
+uci set public_ip_monitor.general.ipv6_script_location="${DEFAULT_IPV6_SCRIPT_PATH}"
+
+DEFAULT_HISTORY_LOCATION="${PUBLIC_IP_MONITOR_DATA_PATH}/history.json"
+uci set public_ip_monitor.general.history_location="${DEFAULT_HISTORY_LOCATION}"
+
+uci set public_ip_monitor.ipv4='ipv4'
+uci set public_ip_monitor.ipv4.current=''
+
+uci set public_ip_monitor.ipv6='ipv6'
+uci set public_ip_monitor.ipv6.current=''
+
+uci set public_ip_monitor.history='history'
+
+mkdir -p "${PUBLIC_IP_MONITOR_DATA_PATH}"
+
+touch "${DEFAULT_IPV4_SCRIPT_PATH}"
+touch "${DEFAULT_IPV6_SCRIPT_PATH}"
+touch "${DEFAULT_HISTORY_LOCATION}"
+
+uci commit
+
+return 0
