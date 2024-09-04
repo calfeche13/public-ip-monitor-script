@@ -30,7 +30,7 @@ start_service() {
 
     if [ "$monitor_ip" == "1" ]; then
         procd_open_instance
-        procd_set_param command /bin/sh "/var/pimonitor.sh" "IPv6" "public_ip_monitor.ipv6.current" "${ip_service}" "${ip_check_interval}" "${ip_script_location}" "${history_location}"
+        procd_set_param command /bin/sh "/var/pimonitor.sh" "ipv6" "public_ip_monitor.ipv6.current" "${ip_service}" "${ip_check_interval}" "${ip_script_location}" "${history_location}"
 
         procd_set_param file /etc/config/public_ip_monitor
 
