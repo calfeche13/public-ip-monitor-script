@@ -29,7 +29,7 @@ uci set public_ip_monitor.ipv4.current=''
 uci set public_ip_monitor.ipv6='ipv6'
 uci set public_ip_monitor.ipv6.current=''
 
-uci set public_ip_monitor.history='history'
+uci set public_ip_monitor.info='info'
 
 mkdir -p "${PUBLIC_IP_MONITOR_DATA_PATH}"
 
