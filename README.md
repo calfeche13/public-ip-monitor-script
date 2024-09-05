@@ -1,4 +1,4 @@
-# Public IP Monitor
+# Public IP Monitor Script
 
 An OpenWrt service to monitor changes to the internet-facing public IP.
 
